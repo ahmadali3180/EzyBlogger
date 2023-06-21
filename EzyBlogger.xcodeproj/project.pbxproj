@@ -16,6 +16,14 @@
 		E00B75D02A41FF3E002C2FD5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E00B75CF2A41FF3E002C2FD5 /* StoreKit.framework */; };
 		E00B75D72A420145002C2FD5 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B75D62A420145002C2FD5 /* ProfileScreen.swift */; };
 		E00B75D92A42030E002C2FD5 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B75D82A42030E002C2FD5 /* TabBarViewController.swift */; };
+		E00B75DB2A432FE7002C2FD5 /* SignInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B75DA2A432FE7002C2FD5 /* SignInScreen.swift */; };
+		E00B75DD2A432FF8002C2FD5 /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B75DC2A432FF8002C2FD5 /* RegisterScreen.swift */; };
+		E00B75DF2A43301C002C2FD5 /* ViewPostScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B75DE2A43301C002C2FD5 /* ViewPostScreen.swift */; };
+		E00B75E12A433031002C2FD5 /* CreateNewPostScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B75E02A433031002C2FD5 /* CreateNewPostScreen.swift */; };
+		E00B75E32A433077002C2FD5 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B75E22A433077002C2FD5 /* IAPManager.swift */; };
+		E00B75E52A4330C3002C2FD5 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B75E42A4330C3002C2FD5 /* DatabaseManager.swift */; };
+		E00B75E72A4330D7002C2FD5 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B75E62A4330D7002C2FD5 /* AuthManager.swift */; };
+		E00B75E92A4330EF002C2FD5 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B75E82A4330EF002C2FD5 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +38,14 @@
 		E00B75CF2A41FF3E002C2FD5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		E00B75D62A420145002C2FD5 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		E00B75D82A42030E002C2FD5 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		E00B75DA2A432FE7002C2FD5 /* SignInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInScreen.swift; sourceTree = "<group>"; };
+		E00B75DC2A432FF8002C2FD5 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
+		E00B75DE2A43301C002C2FD5 /* ViewPostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostScreen.swift; sourceTree = "<group>"; };
+		E00B75E02A433031002C2FD5 /* CreateNewPostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPostScreen.swift; sourceTree = "<group>"; };
+		E00B75E22A433077002C2FD5 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		E00B75E42A4330C3002C2FD5 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		E00B75E62A4330D7002C2FD5 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		E00B75E82A4330EF002C2FD5 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +85,7 @@
 				E00B75D32A4200CA002C2FD5 /* Views */,
 				E00B75D12A4200AE002C2FD5 /* Models */,
 				E00B75C02A41FEFF002C2FD5 /* EzyBlogger.xcdatamodeld */,
+				E00B75C82A41FF01002C2FD5 /* Info.plist */,
 			);
 			path = EzyBlogger;
 			sourceTree = "<group>";
@@ -84,7 +101,10 @@
 		E00B75D12A4200AE002C2FD5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E00B75C82A41FF01002C2FD5 /* Info.plist */,
+				E00B75E22A433077002C2FD5 /* IAPManager.swift */,
+				E00B75E42A4330C3002C2FD5 /* DatabaseManager.swift */,
+				E00B75E62A4330D7002C2FD5 /* AuthManager.swift */,
+				E00B75E82A4330EF002C2FD5 /* StorageManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -100,9 +120,9 @@
 		E00B75D42A4200D3002C2FD5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E00B75BB2A41FEFF002C2FD5 /* HomeScreen.swift */,
-				E00B75D62A420145002C2FD5 /* ProfileScreen.swift */,
-				E00B75D82A42030E002C2FD5 /* TabBarViewController.swift */,
+				E00B75EA2A43350D002C2FD5 /* Core Tabs */,
+				E00B75EB2A433528002C2FD5 /* Auth */,
+				E00B75EC2A433536002C2FD5 /* Post */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -115,6 +135,34 @@
 				E00B75B92A41FEFF002C2FD5 /* SceneDelegate.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		E00B75EA2A43350D002C2FD5 /* Core Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				E00B75BB2A41FEFF002C2FD5 /* HomeScreen.swift */,
+				E00B75D62A420145002C2FD5 /* ProfileScreen.swift */,
+				E00B75D82A42030E002C2FD5 /* TabBarViewController.swift */,
+			);
+			path = "Core Tabs";
+			sourceTree = "<group>";
+		};
+		E00B75EB2A433528002C2FD5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				E00B75DA2A432FE7002C2FD5 /* SignInScreen.swift */,
+				E00B75DC2A432FF8002C2FD5 /* RegisterScreen.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		E00B75EC2A433536002C2FD5 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				E00B75DE2A43301C002C2FD5 /* ViewPostScreen.swift */,
+				E00B75E02A433031002C2FD5 /* CreateNewPostScreen.swift */,
+			);
+			path = Post;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,7 +237,15 @@
 			files = (
 				E00B75BC2A41FEFF002C2FD5 /* HomeScreen.swift in Sources */,
 				E00B75C22A41FEFF002C2FD5 /* EzyBlogger.xcdatamodeld in Sources */,
+				E00B75E32A433077002C2FD5 /* IAPManager.swift in Sources */,
+				E00B75E92A4330EF002C2FD5 /* StorageManager.swift in Sources */,
+				E00B75E72A4330D7002C2FD5 /* AuthManager.swift in Sources */,
+				E00B75E12A433031002C2FD5 /* CreateNewPostScreen.swift in Sources */,
+				E00B75DF2A43301C002C2FD5 /* ViewPostScreen.swift in Sources */,
 				E00B75B82A41FEFF002C2FD5 /* AppDelegate.swift in Sources */,
+				E00B75DB2A432FE7002C2FD5 /* SignInScreen.swift in Sources */,
+				E00B75DD2A432FF8002C2FD5 /* RegisterScreen.swift in Sources */,
+				E00B75E52A4330C3002C2FD5 /* DatabaseManager.swift in Sources */,
 				E00B75BA2A41FEFF002C2FD5 /* SceneDelegate.swift in Sources */,
 				E00B75D92A42030E002C2FD5 /* TabBarViewController.swift in Sources */,
 				E00B75D72A420145002C2FD5 /* ProfileScreen.swift in Sources */,
