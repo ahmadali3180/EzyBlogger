@@ -27,7 +27,7 @@ final class AuthManager {
             guard !email.trimmingCharacters(in: .whitespaces).isEmpty,
                   !password.trimmingCharacters(in: .whitespaces).isEmpty,
                   password.count >= 8 else {
-                return
+                return 
             }
             
             auth.createUser(withEmail: email, password: password) { result, error in
@@ -61,7 +61,7 @@ final class AuthManager {
     public func signOut(completion: @escaping (Bool) -> Void) {
         do {
             try auth.signOut()
-            completion(true )
+            completion(true)
         } catch {
             print(error.localizedDescription)
             completion(false)
