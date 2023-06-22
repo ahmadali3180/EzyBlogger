@@ -21,7 +21,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 //        TODO: - Update VC to sign in VC if not signed in
         
-        let rootVC = TabBarViewController()
+        let rootVC: UIViewController
+        
+        if AuthManager.shared.isSignedIn {
+            rootVC = TabBarViewController()
+            
+        } else {
+            
+            let signInVC = SignInScreen()
+            signInVC.navigationItem.largeTitleDisplayMode = .always
+            
+            let navVC = UINavigationController(rootViewController: signInVC)
+            navVC.navigationBar.prefersLargeTitles = true
+            
+            rootVC = navVC
+        }
         window.rootViewController = rootVC
         window.makeKeyAndVisible()
         self.window = window

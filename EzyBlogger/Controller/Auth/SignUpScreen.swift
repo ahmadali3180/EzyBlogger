@@ -7,10 +7,11 @@
 
 import UIKit
 
-class RegisterScreen: UIViewController {
+class SignUpScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Create Account"
         view.backgroundColor = .systemBackground
     }
 }

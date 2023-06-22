@@ -24,10 +24,13 @@
                                     <constraint firstAttribute="height" constant="180" id="Cx9-Fi-bgk"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ezy Blogger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpb-tM-lji">
-                                <rect key="frame" x="141" y="556" width="111" height="22"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EZY BLOGGER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpb-tM-lji">
+                                <rect key="frame" x="30" y="556" width="333" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="E0N-xh-Wuj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="32"/>
+                                <color key="textColor" red="0.76470589639999997" green="0.34901961679999999" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -35,16 +38,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0dZ-aj-qPH" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="06Y-SK-CF2"/>
-                            <constraint firstItem="bpb-tM-lji" firstAttribute="top" secondItem="0dZ-aj-qPH" secondAttribute="bottom" constant="40" id="7gz-kI-NaU"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bpb-tM-lji" secondAttribute="trailing" constant="141" id="Jy2-lG-qfj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bpb-tM-lji" secondAttribute="trailing" constant="30" id="2T5-wQ-uri"/>
+                            <constraint firstItem="bpb-tM-lji" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7Ib-z5-MCu"/>
+                            <constraint firstItem="bpb-tM-lji" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="NEw-HB-3nR"/>
                             <constraint firstItem="0dZ-aj-qPH" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="VHM-hg-Fjx"/>
-                            <constraint firstItem="bpb-tM-lji" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="141" id="Yxc-HY-WsI"/>
+                            <constraint firstItem="bpb-tM-lji" firstAttribute="top" secondItem="0dZ-aj-qPH" secondAttribute="bottom" constant="40" id="Y57-Sq-LBd"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
         </scene>
     </scenes>
     <resources>
