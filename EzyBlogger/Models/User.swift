@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct User {
+struct User{
     let name: String
     let email: String
-    let profilePictureURL: URL?
-     
+    let profilePictureRef: String?
+    
 }

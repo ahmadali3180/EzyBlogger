@@ -9,6 +9,7 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpScreens()
@@ -16,10 +17,11 @@ class TabBarViewController: UITabBarController {
     }
     
     private func setUpScreens() {
+        guard let currentEmail = UserDefaults.standard.string(forKey: "email") else { return }
+        
         let home = HomeScreen()
         home.title = "Home"
-        
-        let profile = ProfileScreen()
+        let profile = ProfileScreen(currentEmail: currentEmail)
         profile.title = "Profile"
         
         home.navigationItem.largeTitleDisplayMode = .always
