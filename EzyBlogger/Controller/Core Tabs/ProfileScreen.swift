@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Photos
+import PhotosUI
 
 class ProfileScreen: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -91,6 +93,10 @@ class ProfileScreen: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     //MARK: - Table View
+    private var posts: [BlogPost] = []
+    private func fetchPosts() {
+        
+    }
     
     private func setUpTableView() {
         view.addSubview(tableView)
@@ -107,6 +113,7 @@ class ProfileScreen: UIViewController, UITableViewDelegate, UITableViewDataSourc
             width: width, height: width/1.5 )
         )
         headerView.backgroundColor = .systemGray
+        headerView.isUserInteractionEnabled = true
         tableView.tableHeaderView = headerView
         headerView.clipsToBounds = true
         
@@ -116,14 +123,19 @@ class ProfileScreen: UIViewController, UITableViewDelegate, UITableViewDataSourc
         profilePic.contentMode = .scaleAspectFit
         profilePic.frame = CGRect(
             x: (width-(width/4))/2,
-            y: (headerView.bounds.height-(width/4))/2.5,
-            width: width/4, height: width/4
+            y: (headerView.bounds.height-(width/3))/6,
+            width: width/3.5, height: width/3.5
         )
+        profilePic.layer.masksToBounds = true
+        profilePic.layer.cornerRadius = profilePic.frame.width/2
+        profilePic.isUserInteractionEnabled = true
         headerView.addSubview(profilePic)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapProfilePic))
+        profilePic.addGestureRecognizer(tap)
         
         //        Email
         let emailLabel = UILabel(frame: CGRect(
-            x: 20, y: profilePic.bounds.maxY+52,
+            x: 20, y: profilePic.bounds.maxY+30,
             width: width-40, height: 100)
         )
         
@@ -137,19 +149,53 @@ class ProfileScreen: UIViewController, UITableViewDelegate, UITableViewDataSourc
         if let name = name {
             title = name
         }
-        if let ref = profilePicRef {
+        if let path = profilePicRef {
             //            Fetch Image
+            StorageManager.shared.downloadURLForProfilePicture(path: path) { url in
+                guard let url = url else { return }
+                let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+                    guard let data = data else { return }
+                    DispatchQueue.main.async {
+                        profilePic.image = UIImage(data: data)
+                        headerView.backgroundColor = .clear
+                    }
+                      
+                }
+                task.resume()
+            }
             
         }
     }
     
-    //    Fetching Profile Data
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let post = posts[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        var contentConfig = UIListContentConfiguration.cell()
+        contentConfig.text = "Title of Cell"
+        cell.contentConfiguration = contentConfig
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let vc = ViewPostScreen()
+        vc.title =  posts[indexPath.row].title
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    //MARK: - Setting Up Profile
     private func fetchProfileData() {
         DBManager.shared.getUser(email: currentEmail) { [weak self] user in
             guard let user = user else {return}
-            self?.user = user
+            guard let strongSelf = self else { return }
+            strongSelf.user = user
             DispatchQueue.main.async {
-                self?.setUpTableHeader(
+                strongSelf.setUpTableHeader(
                     profilePicRef: user.profilePictureRef,
                     name: user.name
                 )
@@ -157,20 +203,50 @@ class ProfileScreen: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var contentConfig = UIListContentConfiguration.cell()
-        contentConfig.text = "Title of Cell"
-        cell.contentConfiguration = contentConfig
-        return cell
+    @objc private func didTapProfilePic() {
+        guard let myEmail = UserDefaults.standard.string(forKey: "email"),
+              myEmail == currentEmail else { return }
+        openPHPicker()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+}
+
+extension ProfileScreen: PHPickerViewControllerDelegate, UINavigationControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true, completion: .none)
+        results.forEach { result in
+            result.itemProvider.loadObject(ofClass: UIImage.self) { reading, error in
+                guard let image = reading as? UIImage, error == nil else {
+                    return
+                    
+                }
+                DispatchQueue.main.async {
+                    StorageManager.shared.uploadProfilePicture(
+                        email: self.currentEmail,
+                        image: image) { [weak self] success in
+                            guard let strongSelf = self else { return }
+                            if success {
+                                DBManager.shared.updateProfilePic(email: strongSelf.currentEmail) { updated in
+                                    guard updated else {
+                                        return
+                                    }
+                                    strongSelf.fetchProfileData()
+                                }
+                            }
+                        }
+                }
+            }
+        }
+        
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    func openPHPicker() {
+        var phPickerConfig = PHPickerConfiguration(photoLibrary: .shared())
+        phPickerConfig.selectionLimit = 1
+        phPickerConfig.filter = PHPickerFilter.any(of: [.images])
+        let phPickerVC = PHPickerViewController(configuration: phPickerConfig)
+        phPickerVC.delegate = self
+        present(phPickerVC, animated: true)
     }
     
 }

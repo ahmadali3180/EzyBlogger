@@ -45,5 +45,5 @@ class SignInHeaderView: UIView {
         imageView.frame = CGRect(x: (screenWidth-size)/2, y: 10, width: size, height: size)
         label.frame = CGRect(x: 20, y: size-(3.08*size), width: screenWidth-40, height: screenHeight-size-30)
     }
-
+    
 }

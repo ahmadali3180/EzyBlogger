@@ -122,7 +122,7 @@ class SignUpScreen: UIViewController {
                     
                     UserDefaults.standard.setValue(email, forKey: "email")
                     UserDefaults.standard.setValue(name, forKey: "name")
-                     
+                    
                     DispatchQueue.main.async {
                         let vc = TabBarViewController()
                         vc.modalPresentationStyle = .fullScreen
@@ -134,10 +134,6 @@ class SignUpScreen: UIViewController {
             }
         }
         
-    }
-    
-    @objc func test() {
-        print("!")
     }
     
 }

@@ -14,4 +14,4 @@ struct BlogPost {
     let headerImageURL: URL?
     let text: String
 }
- 
+

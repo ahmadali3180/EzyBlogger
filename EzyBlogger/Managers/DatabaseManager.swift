@@ -63,12 +63,9 @@ final class DBManager {
                 guard let data = snapshot?.data() as? [String: String],
                       let name = data["name"],
                       error == nil else {
-                    //                    Handle Error
                     return
                 }
-                
-               var ref = data["profile_picture"]
-                
+                let ref = data["profile_picture"]
                 let user = User(
                     name: name,
                     email: email,
@@ -77,5 +74,26 @@ final class DBManager {
                 completion(user)
             }
         
+    }
+    
+    public func updateProfilePic(email: String, completion: @escaping (Bool) -> Void) {
+        let path = email
+            .replacingOccurrences(of: "@", with: "_")
+            .replacingOccurrences(of: ".", with: "_")
+        let photoRef = "profile_pictures/\(path)/photo.png"
+        
+        let dbRef = database
+            .collection("users")
+            .document(path)
+        
+        dbRef.getDocument { snapshot, error in
+            guard var data = snapshot?.data(), error == nil else { return }
+            
+            data["profile_picture"] = photoRef
+            
+            dbRef.setData(data) { errpor in
+                completion(error == nil) // if true -> true, if false -> false
+            }
+        }
     }
 }

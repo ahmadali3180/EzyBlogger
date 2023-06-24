@@ -100,7 +100,7 @@ class SignInScreen: UIViewController {
             x: 20,
             y: signInButton.frame.maxY+60,
             width: width-40, height: 50)
-
+        
     }
     
     @objc func didTapSignIn() {
@@ -112,7 +112,7 @@ class SignInScreen: UIViewController {
               let password = passwordFeild.text, !password.isEmpty else {
             return
         }
-//        Authenticate User
+        //        Authenticate User
         AuthManager.shared.signIn(email: email, password: password) { [weak self] success in
             if success {
                 let vc = TabBarViewController()
@@ -122,7 +122,7 @@ class SignInScreen: UIViewController {
                 self?.present(alert, animated: true)
             }
         }
-//        Login User
+        //        Login User
     }
     
     @objc func didTapCreateAccount() {
